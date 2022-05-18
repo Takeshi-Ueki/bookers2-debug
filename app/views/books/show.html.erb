@@ -17,17 +17,8 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
-          <td>
-          <% if @book.favorited_by?(current_user) %>
-              <%= link_to book_favorites_path(@book), method: :delete, class: "favorite-true" do %>
-              ♥<%= @book.favorites.count %>
-              <% end %>
-            <% else %>
-              <%= link_to book_favorites_path(@book), method: :post, class: "favorite-folse" do %>
-              ♥<%= @book.favorites.count %>
-              <% end %>
-          <% end %>
-          </td>
+          <td id="favorites_buttons_<%= @book.id %>">
+            <%= render 'favorites/favorites', book: @book %>
           <td>コメント数:<%= @book.book_comments.count %></td>
             <% if @user == current_user %>
               <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
@@ -38,27 +29,12 @@
         </tr>
       </table>
 
-      <table class="">
-        <% @book.book_comments.each do |book_comment| %>
-          <tr>
-            <td>
-              <%= image_tag book_comment.user.get_profile_image, size: "80x80" %><br>
-              <%= link_to  book_comment.user.name, user_path(@user) %>
-            </td>
-            <td><%= book_comment.comment %></td>
-            <td><%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-sm btn-danger"%></td>
-          </tr>
-        <% end %>
-      </table>
-
-      <%= form_with model: [@book, @book_comment] do |f| %>
-        <div class="form-group">
-          <%= f.text_area :comment, rows: '5', class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.submit "送信" %>
-        </div>
-      <% end %>
+      <div id="comments_area">
+        <%= render partial: 'book_comments/book_comments', locals: { book: @book, user: @user } %>
+      </div>
+      <div class="new_comment">
+        <%= render partial: 'book_comments/form', locals: { book: @book, book_comment: @book_comment } %>
+      </div>
     </div>
   </div>
 </div>
