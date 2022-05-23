@@ -1,0 +1,25 @@
+<div class="rooms">
+
+<% current_user.rooms.each do |room| %>
+
+ <div class="room">
+
+ <div class="room-name">
+
+<% @another_user = (room.users.where.not(id: current_user.id).to_a)[0] %>
+
+<%= link_to @another_user.name, room_messages_path(room) %>
+
+ </div>
+
+ <div class="delete-room">
+
+<%= link_to "×", room_path(room), method: :delete %>
+
+ </div>
+
+ </div>
+
+<% end %>
+
+</div>

@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  has_many :room_users
+  has_many :rooms, through: :room_users, dependent: :destroy
+  has_many :messages
+
 
   # フォロワー機能
   # ーーーーーーーーーーーーーーーーーーーー
