@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  impressionist :acrions => [:show]
   before_action :ensure_correct_user, only:[:edit]
 
   def show
@@ -6,6 +7,8 @@ class BooksController < ApplicationController
     @user = @book.user
     @book_post = Book.new
     @book_comment = BookComment.new
+
+    impressionist(@book, nil, unique: [:session_hash.to_s])
   end
 
   def index
