@@ -1,0 +1,43 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">今日の投稿数</th>
+      <th scope="col">前日の投稿数</th>
+      <th scope="col">前日比</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= post_today.count%></td>
+      <td><%= post_yesterday.count %></td>
+      <td>
+        <% if post_yesterday.count == 0 %>
+          前日の投稿はありません
+        <% else %>
+          <%= (((post_today.count / post_yesterday.count).to_f) * 100).round %>%
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+
+  <thead>
+    <tr>
+      <th scope="col">今週の投稿数</th>
+      <th scope="col">前週の投稿数</th>
+      <th scope="col">前週比</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= post_this_week.count%></td>
+      <td><%= post_last_week.count %></td>
+      <td>
+        <% if post_last_week.count == 0 %>
+          前週の投稿はありません
+        <% else %>
+          <%= (((post_this_week.count / post_last_week.count).to_f) * 100).round %>%
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
