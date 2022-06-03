@@ -10,10 +10,17 @@
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
 
+      <%= render 'daily_posts_form', user: @user %>
+
+      <h2>7日分の投稿数</h2>
+      <%= render partial: 'week_graph',
+                 locals: { books: @books, post_today: @post_today, post_yesterday: @post_yesterday} %>
+
       <h2>投稿数の前日比・前週比</h2>
         <%= render partial: 'record',
-        locals: { post_today: @post_today, post_yesterday: @post_yesterday,
-                  post_this_week: @post_this_week, post_last_week: @post_last_week} %>
+                   locals: { post_today: @post_today, post_yesterday: @post_yesterday,
+                             post_this_week: @post_this_week, post_last_week: @post_last_week} %>
+      </div>
     </div>
   </div>
 </div>
