@@ -13,11 +13,11 @@ import "bootstrap"
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application"
 
-//= require jquery
-//= require rails-ujs
+window.$ = window.jQuery = require('jquery');
 
 require("chartkick")
 require("chart.js")
+require('packs/raty')
 
 Rails.start()
 Turbolinks.start()
