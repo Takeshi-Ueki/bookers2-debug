@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   get "search" => "searches#search"
+  get "search_tag" => "books#search_tag"
 
   resources :chats, only: [:create, :show]
 

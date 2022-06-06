@@ -1,6 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+body{
+  background-color: #DDD;
+}
+
 .favorite-true{
   color: blue;
 }
